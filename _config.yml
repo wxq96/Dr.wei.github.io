@@ -26,9 +26,9 @@ author:
   avatar           : "cat.jpg"
   name             : "Wei Xiangqing"
   pronouns         : # example: "she/her"  
-  bio              : ""
+  bio              : #""
   location         : "Earth"
-  employer         : ""
+  employer         : #""
   uri              : # URL
   email            : "weixiangqing6@gmail.com" 
 
