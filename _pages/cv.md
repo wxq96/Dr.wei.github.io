@@ -55,30 +55,21 @@ author_profile: true
   <h2>Research Experience</h2>
 
   <p>
-    My recent work focuses on building a closed-loop reinforcement learning scheduling platform
-    for CNN accelerators. The platform models neural network workloads as tile-level directed
-    acyclic graphs and optimizes tile dispatch, PE assignment, memory reuse, and execution latency.
+    My recent work focuses on xxxxxx.
   </p>
 
-  <p>
-    I have also worked on RTL-level modeling and simulation of NVDLA-style compute modules,
-    including MAC arrays, PE utilization monitoring, tile-level execution traces, and
-    reward-driven scheduling feedback for accelerator optimization.
-  </p>
 
   <h2>Skills</h2>
 
   <ul>
     <li>Programming: Python, C/C++, SystemVerilog, Verilog</li>
     <li>Hardware design: RTL design, FPGA prototyping, digital IC design</li>
-    <li>Tools: Vivado, GitHub, Linux, PyTorch</li>
-    <li>Research: reinforcement learning, CNN accelerator scheduling, computer architecture</li>
+    <li>Research: reinforcement learning, DNN accelerator design, computer architecture</li>
   </ul>
 
   <h2>Contact</h2>
 
   <ul>
-    <li>Email: your_email@example.com</li>
     <li>GitHub: <a href="https://github.com/wxq96">wxq96</a></li>
     <li>Google Scholar: <a href="https://scholar.google.com/citations?user=PS_CX0AAAAAJ">Wei Xiangqing</a></li>
   </ul>
