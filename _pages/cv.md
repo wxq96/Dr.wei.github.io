@@ -47,12 +47,6 @@ Publications
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
 Teaching
 ======
   <ul>{% for post in site.teaching reversed %}
@@ -61,4 +55,33 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+
+<div style="max-width: 850px; line-height: 1.8; font-size: 16px;">
+
+  <div style="text-align: center; margin-bottom: 30px;">
+    <img src="{{ site.baseurl }}/images/profile_photo_wei.png"
+         alt="Wei Xiangqing profile photo"
+         style="width: 240px; height: 240px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.18);">
+  </div>
+
+  <h1>Wei Xiangqing</h1>
+
+  <p>
+    I am currently a research assistant at Chiba University, Japan. My research focuses on AI accelerator architecture,
+    reinforcement-learning-driven scheduling, and hardware-software co-design for neural network accelerators.
+  </p>
+
+  <p>
+    <strong>Master’s Degree in Integrated Circuit Engineering</strong><br>
+    Guizhou University, China<br>
+    Research area: RISC-V processor design, integer execution units, Booth multiplication, SRT division, and digital circuit design.
+  </p>
+
+  <h2>Research Interests</h2>
+
+  <ul>
+    <li>AI hardware architecture</li>
+    <li>NPU and FPGA-based DNN acceleration</li>
+    <li>Reinforcement learning </li>
+    <li>Hardware-software co-design</li>
+  </ul>
