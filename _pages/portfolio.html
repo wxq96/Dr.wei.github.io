@@ -1,14 +1,78 @@
+
 ---
 layout: archive
-title: "Portfolio"
+title: "Profile"
 permalink: /portfolio/
 author_profile: true
 ---
 
-{% include base_path %}
+<div style="max-width: 850px; line-height: 1.8; font-size: 16px;">
 
+  <div style="text-align: center; margin-bottom: 30px;">
+    <img src="{{ site.baseurl }}/images/profile_photo.jpg"
+         alt="Wei Xiangqing profile photo"
+         style="width: 240px; height: 240px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.18);">
+  </div>
 
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
+  <h1>Wei Xiangqing</h1>
 
+  <p>
+    I am currently a research assistant at Chiba University, Japan. My research focuses on AI accelerator architecture,
+    reinforcement-learning-driven scheduling, and hardware-software co-design for neural network accelerators.
+  </p>
+
+  <p>
+    My current research interests include reinforcement learning based scheduling for NPU architectures, tile-level
+    execution optimization for CNN accelerators, sparse neural network acceleration, and FPGA-based hardware validation.
+    I am particularly interested in building intelligent scheduling frameworks that can optimize latency, energy efficiency,
+    PE utilization, and memory access behavior for deep neural network workloads.
+  </p>
+
+  <h2>Academic Background</h2>
+
+  <p>
+    <strong>Research Assistant</strong><br>
+    Chiba University, Japan<br>
+    Research area: AI accelerators, NPU scheduling, reinforcement learning, FPGA-based accelerator design
+  </p>
+
+  <p>
+    <strong>Master’s Degree in Integrated Circuit Engineering</strong><br>
+    Guizhou University, China<br>
+    Research area: RISC-V processor design, integer execution units, Booth multiplication, SRT division, and digital circuit design
+  </p>
+
+  <h2>Research Interests</h2>
+
+  <ul>
+    <li>AI accelerator architecture</li>
+    <li>NPU and FPGA-based DNN acceleration</li>
+    <li>Reinforcement learning for hardware scheduling</li>
+    <li>Tile-level and DAG-based neural network optimization</li>
+    <li>Sparse neural network acceleration</li>
+    <li>Hardware-software co-design</li>
+    <li>Digital IC design and computer architecture</li>
+  </ul>
+
+  <h2>Research Experience</h2>
+
+  <p>
+    My recent work focuses on constructing a reinforcement-learning-driven scheduling framework for CNN accelerators.
+    The framework models neural network workloads as tile-level directed acyclic graphs and uses reinforcement learning
+    to optimize tile dispatch, PE assignment, memory reuse, and execution latency.
+  </p>
+
+  <p>
+    I have also worked on RTL-level modeling and simulation of NVDLA-style compute modules, including MAC arrays,
+    PE utilization monitoring, tile-level execution traces, and reward-driven scheduling feedback for accelerator optimization.
+  </p>
+
+  <h2>Contact</h2>
+
+  <ul>
+    <li>Email: your_email@example.com</li>
+    <li>GitHub: <a href="https://github.com/wxq96">wxq96</a></li>
+    <li>Google Scholar: Add your Google Scholar link here</li>
+  </ul>
+
+</div>
