@@ -1,60 +1,9 @@
 ---
 layout: archive
-title: "CV"
+title: "Profile"
 permalink: /cv/
 author_profile: true
-redirect_from:
-  - /resume
 ---
-
-{% include base_path %}
-
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
-
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
-
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
 
 <div style="max-width: 850px; line-height: 1.8; font-size: 16px;">
 
@@ -72,9 +21,24 @@ Service and leadership
   </p>
 
   <p>
+    My current research interests include reinforcement learning based scheduling for NPU architectures,
+    tile-level execution optimization for CNN accelerators, sparse neural network acceleration,
+    and FPGA-based hardware validation.
+  </p>
+
+  <h2>Academic Background</h2>
+
+  <p>
+    <strong>Research Assistant</strong><br>
+    Chiba University, Japan<br>
+    Research area: AI accelerators, NPU scheduling, reinforcement learning, FPGA-based accelerator design.
+  </p>
+
+  <p>
     <strong>Master’s Degree in Integrated Circuit Engineering</strong><br>
     Guizhou University, China<br>
-    Research area: RISC-V processor design, integer execution units, Booth multiplication, SRT division, and digital circuit design.
+    Research area: RISC-V processor design, integer execution units, Booth multiplication,
+    SRT division, and digital circuit design.
   </p>
 
   <h2>Research Interests</h2>
@@ -82,6 +46,41 @@ Service and leadership
   <ul>
     <li>AI hardware architecture</li>
     <li>NPU and FPGA-based DNN acceleration</li>
-    <li>Reinforcement learning </li>
+    <li>Reinforcement learning for accelerator scheduling</li>
+    <li>Tile-level DAG modeling and scheduling optimization</li>
     <li>Hardware-software co-design</li>
+    <li>FPGA-based accelerator validation</li>
   </ul>
+
+  <h2>Research Experience</h2>
+
+  <p>
+    My recent work focuses on building a closed-loop reinforcement learning scheduling platform
+    for CNN accelerators. The platform models neural network workloads as tile-level directed
+    acyclic graphs and optimizes tile dispatch, PE assignment, memory reuse, and execution latency.
+  </p>
+
+  <p>
+    I have also worked on RTL-level modeling and simulation of NVDLA-style compute modules,
+    including MAC arrays, PE utilization monitoring, tile-level execution traces, and
+    reward-driven scheduling feedback for accelerator optimization.
+  </p>
+
+  <h2>Skills</h2>
+
+  <ul>
+    <li>Programming: Python, C/C++, SystemVerilog, Verilog</li>
+    <li>Hardware design: RTL design, FPGA prototyping, digital IC design</li>
+    <li>Tools: Vivado, GitHub, Linux, PyTorch</li>
+    <li>Research: reinforcement learning, CNN accelerator scheduling, computer architecture</li>
+  </ul>
+
+  <h2>Contact</h2>
+
+  <ul>
+    <li>Email: your_email@example.com</li>
+    <li>GitHub: <a href="https://github.com/wxq96">wxq96</a></li>
+    <li>Google Scholar: <a href="https://scholar.google.com/citations?user=PS_CX0AAAAAJ">Wei Xiangqing</a></li>
+  </ul>
+
+</div>
