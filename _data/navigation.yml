@@ -18,7 +18,7 @@ main:
   #  url: /teaching/    
     
   - title: "Profile"
-    url: /portfolio/
+    url: /
         
   - title: "Blog Posts"
     url: /year-archive/
