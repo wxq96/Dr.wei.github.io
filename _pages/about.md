@@ -1,3 +1,10 @@
+---
+layout: archive
+title: "Profile"
+permalink: /
+author_profile: true
+---
+
 <section class="research-section circuit-bg" id="research">
   <h2 class="section-title">Research Interests</h2>
 
