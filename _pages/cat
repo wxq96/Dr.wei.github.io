@@ -1,0 +1,660 @@
+---
+layout: single
+title: " "
+permalink: /
+author_profile: false
+---
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.page,
+.archive,
+.initial-content,
+.page__content,
+.page__inner-wrap {
+  background: transparent !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.page__title {
+  display: none !important;
+}
+
+#main {
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.world {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #e5f7ff;
+  background: #020617;
+}
+
+/* Cat background */
+.world-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(2, 6, 23, 0.42), rgba(2, 6, 23, 0.82)),
+    url("{{ site.baseurl }}/images/cat_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.08);
+  z-index: -5;
+  transition: transform 0.12s ease-out, background-position 0.12s ease-out;
+}
+
+/* Circuit grid */
+.world-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+  z-index: -4;
+  animation: gridMove 18s linear infinite;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 96px 96px; }
+}
+
+/* Mouse light */
+.world-light {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+      rgba(56, 189, 248, 0.28),
+      rgba(59, 130, 246, 0.10) 18%,
+      transparent 42%);
+  pointer-events: none;
+  z-index: -3;
+}
+
+/* Floating particles */
+.particle {
+  position: fixed;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(125, 211, 252, 0.72);
+  box-shadow: 0 0 18px rgba(125, 211, 252, 0.9);
+  z-index: -2;
+  animation: floatParticle 8s ease-in-out infinite;
+}
+
+.p1 { left: 8%; top: 24%; animation-delay: 0s; }
+.p2 { left: 18%; top: 72%; animation-delay: 1.4s; }
+.p3 { left: 78%; top: 22%; animation-delay: 2.2s; }
+.p4 { left: 88%; top: 68%; animation-delay: 3.1s; }
+.p5 { left: 54%; top: 82%; animation-delay: 4.4s; }
+
+@keyframes floatParticle {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.48; }
+  50% { transform: translateY(-26px) scale(1.35); opacity: 1; }
+}
+
+.world-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 72px 28px 96px;
+}
+
+.world-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+  min-height: 72vh;
+}
+
+.hero-panel {
+  position: relative;
+  padding: 42px;
+  border-radius: 34px;
+  background: rgba(2, 6, 23, 0.66);
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  box-shadow:
+    0 0 45px rgba(56, 189, 248, 0.18),
+    inset 0 0 32px rgba(56, 189, 248, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+
+.hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(56, 189, 248, 0.35),
+    transparent
+  );
+  transform: translateX(-120%);
+  animation: panelScan 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes panelScan {
+  0% { transform: translateX(-120%); opacity: 0; }
+  18% { opacity: 1; }
+  38% { transform: translateX(120%); opacity: 0; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+.hero-kicker {
+  color: #7dd3fc;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.hero-panel h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 54px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.hero-panel h2 {
+  margin: 16px 0 0;
+  color: #bae6fd;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.hero-panel p {
+  margin-top: 22px;
+  color: #dbeafe;
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.hero-buttons {
+  margin-top: 28px;
+}
+
+.hero-buttons a {
+  display: inline-block;
+  margin: 7px 9px 7px 0;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #7dd3fc;
+  color: #020617;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.42);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+}
+
+.hero-buttons a:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 34px rgba(125, 211, 252, 0.72);
+  background: #e0f2fe;
+}
+
+.hero-buttons a.secondary {
+  background: rgba(15, 23, 42, 0.64);
+  color: #e0f2fe;
+  border: 1px solid rgba(125, 211, 252, 0.36);
+}
+
+.orbit-zone {
+  position: relative;
+  height: 520px;
+}
+
+.core-photo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 230px;
+  height: 230px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(224, 242, 254, 0.88);
+  box-shadow:
+    0 0 42px rgba(56, 189, 248, 0.52),
+    0 0 110px rgba(59, 130, 246, 0.28);
+  z-index: 4;
+}
+
+.orbit-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(125, 211, 252, 0.26);
+  transform: translate(-50%, -50%);
+}
+
+.ring-1 {
+  width: 360px;
+  height: 360px;
+  animation: rotateRing 18s linear infinite;
+}
+
+.ring-2 {
+  width: 470px;
+  height: 470px;
+  animation: rotateRingReverse 26s linear infinite;
+}
+
+@keyframes rotateRing {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes rotateRingReverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.world-node {
+  position: absolute;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.72);
+  border: 1px solid rgba(125, 211, 252, 0.34);
+  color: #e0f2fe;
+  font-weight: 900;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.18);
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(12px);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+  z-index: 6;
+}
+
+.world-node:hover {
+  transform: translateY(-8px) scale(1.08);
+  background: rgba(125, 211, 252, 0.95);
+  color: #020617;
+  box-shadow:
+    0 0 26px rgba(125, 211, 252, 0.95),
+    0 0 70px rgba(56, 189, 248, 0.42);
+}
+
+.node-research { left: 4%; top: 18%; }
+.node-publication { right: 4%; top: 20%; }
+.node-projects { left: 6%; bottom: 18%; }
+.node-news { right: 8%; bottom: 16%; }
+
+.world-section-title {
+  margin: 48px 0 24px;
+  color: #ffffff;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 22px rgba(56, 189, 248, 0.42);
+}
+
+.world-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.world-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 230px;
+  padding: 26px;
+  border-radius: 28px;
+  background: rgba(2, 6, 23, 0.62);
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  box-shadow:
+    0 20px 58px rgba(0, 0, 0, 0.32),
+    inset 0 0 26px rgba(56, 189, 248, 0.06);
+  backdrop-filter: blur(16px);
+  color: #e5f7ff;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.world-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(125, 211, 252, 0.22), transparent 36%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.world-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(125, 211, 252, 0.72);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.42),
+    0 0 38px rgba(56, 189, 248, 0.22);
+}
+
+.world-card:hover::after {
+  opacity: 1;
+}
+
+.world-card h3 {
+  position: relative;
+  z-index: 2;
+  color: #7dd3fc;
+  margin: 0 0 12px;
+  font-size: 22px;
+}
+
+.world-card p {
+  position: relative;
+  z-index: 2;
+  color: #dbeafe;
+  line-height: 1.78;
+}
+
+.world-card .hidden-info {
+  position: relative;
+  z-index: 2;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(10px);
+  transition: all 0.32s ease;
+  color: #bae6fd;
+}
+
+.world-card:hover .hidden-info {
+  max-height: 120px;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 12px;
+}
+
+.info-panel {
+  position: fixed;
+  right: 34px;
+  bottom: 34px;
+  width: min(420px, calc(100vw - 68px));
+  padding: 24px;
+  border-radius: 26px;
+  background: rgba(2, 6, 23, 0.82);
+  border: 1px solid rgba(125, 211, 252, 0.36);
+  box-shadow: 0 0 48px rgba(56, 189, 248, 0.24);
+  backdrop-filter: blur(18px);
+  color: #e0f2fe;
+  transform: translateY(24px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.28s ease;
+  z-index: 20;
+}
+
+.info-panel.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.info-panel h3 {
+  color: #7dd3fc;
+  margin-top: 0;
+}
+
+.info-panel p {
+  line-height: 1.75;
+}
+
+.close-panel {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  cursor: pointer;
+  color: #bae6fd;
+  font-weight: 900;
+}
+
+.energy-ripple {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(125, 211, 252, 0.9);
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.8);
+  pointer-events: none;
+  z-index: 9999;
+  animation: energy 0.8s ease-out forwards;
+}
+
+@keyframes energy {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(9);
+  }
+}
+
+@media (max-width: 900px) {
+  .world-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .orbit-zone {
+    height: 430px;
+  }
+
+  .world-grid-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel h1 {
+    font-size: 40px;
+  }
+
+  .core-photo {
+    width: 190px;
+    height: 190px;
+  }
+
+  .ring-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ring-2 {
+    width: 380px;
+    height: 380px;
+  }
+}
+</style>
+
+<div class="world">
+  <div class="world-bg" id="worldBg"></div>
+  <div class="world-grid"></div>
+  <div class="world-light"></div>
+
+  <div class="particle p1"></div>
+  <div class="particle p2"></div>
+  <div class="particle p3"></div>
+  <div class="particle p4"></div>
+  <div class="particle p5"></div>
+
+  <div class="world-inner">
+
+    <section class="world-hero">
+
+      <div class="hero-panel">
+        <div class="hero-kicker">Interactive Research World</div>
+        <h1>Wei Xiangqing</h1>
+        <h2>AI Accelerators · RL Scheduling · FPGA/NPU</h2>
+
+        <p>
+          Welcome to my research world. I am interested in hardware architectures for deep learning acceleration,
+          hardware-aware scheduling, reinforcement-learning-based optimization, and digital circuit design.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="{{ site.baseurl }}/publications/">Publications</a>
+          <a class="secondary" href="https://github.com/wxq96">GitHub</a>
+          <a class="secondary" href="https://scholar.google.com/citations?user=PS_CX0AAAAAJ">Google Scholar</a>
+        </div>
+      </div>
+
+      <div class="orbit-zone">
+        <div class="orbit-ring ring-1"></div>
+        <div class="orbit-ring ring-2"></div>
+
+        <img class="core-photo"
+             src="{{ site.baseurl }}/images/profile_photo_wei.png"
+             alt="Wei Xiangqing profile photo">
+
+        <div class="world-node node-research" data-title="Research Interests" data-text="AI accelerator architecture, hardware-aware scheduling, reinforcement learning for optimization, and digital circuit design.">
+          Research
+        </div>
+
+        <div class="world-node node-publication" data-title="Publications" data-text="Selected publications and research outputs on CNN accelerators, scheduling, and arithmetic circuit design.">
+          Publications
+        </div>
+
+        <div class="world-node node-projects" data-title="Projects" data-text="Project portfolio covering accelerator scheduling, workload modeling, FPGA/NPU experimentation, and RTL-related design.">
+          Projects
+        </div>
+
+        <div class="world-node node-news" data-title="News" data-text="Latest updates about my research progress, website updates, academic activities, and technical notes.">
+          News
+        </div>
+      </div>
+
+    </section>
+
+    <h2 class="world-section-title">Explore My Research Space</h2>
+
+    <div class="world-grid-cards">
+
+      <div class="world-card">
+        <h3>AI Hardware Architecture</h3>
+        <p>
+          I am interested in hardware architectures for deep learning acceleration,
+          especially computation units, memory access, and system-level efficiency.
+        </p>
+        <div class="hidden-info">
+          Hover interaction reveals additional notes: workload behavior, accelerator resources,
+          and hardware efficiency are my key interests.
+        </div>
+      </div>
+
+      <div class="world-card">
+        <h3>Accelerator Scheduling</h3>
+        <p>
+          I am studying scheduling and resource-allocation problems in accelerator systems,
+          including task mapping and execution-order optimization.
+        </p>
+        <div class="hidden-info">
+          The core question is how to map workloads onto limited hardware resources with better latency and utilization.
+        </div>
+      </div>
+
+      <div class="world-card">
+        <h3>RL-based Optimization</h3>
+        <p>
+          I am exploring reinforcement learning as a potential method for automatic optimization
+          in hardware-aware scheduling and design-space exploration.
+        </p>
+        <div class="hidden-info">
+          RL can connect workload features, hardware constraints, and performance feedback into one optimization loop.
+        </div>
+      </div>
+
+      <div class="world-card">
+        <h3>Digital Circuit Design</h3>
+        <p>
+          My previous work includes digital circuit design and processor-related modules,
+          such as arithmetic units, Booth multiplication, and SRT division.
+        </p>
+        <div class="hidden-info">
+          This background helps bridge algorithm-level optimization and RTL-level implementation.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="info-panel" id="infoPanel">
+    <div class="close-panel" id="closePanel">×</div>
+    <h3 id="panelTitle">Research</h3>
+    <p id="panelText">Click a node to explore more.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const root = document.documentElement;
+  const bg = document.getElementById("worldBg");
+  const panel = document.getElementById("infoPanel");
+  const panelTitle = document.getElementById("panelTitle");
+  const panelText = document.getElementById("panelText");
+  const closePanel = document.getElementById("closePanel");
+
+  document.addEventListener("mousemove", function (e) {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+
+    root.style.setProperty("--mx", (x * 100) + "%");
+    root.style.setProperty("--my", (y * 100) + "%");
+
+    const moveX = (x - 0.5) * 28;
+    const moveY = (y - 0.5) * 28;
+
+    if (bg) {
+      bg.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
+      bg.style.transform = `scale(1.09) translate(${moveX * -0.25}px, ${moveY * -0.25}px)`;
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    const ripple = document.createElement("div");
+    ripple.className = "energy-ripple";
+    ripple.style.left = e.clientX + "px";
+    ripple.style.top = e.clientY + "px";
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 820);
+  });
+
+  document.querySelectorAll(".world-node").forEach(function (node) {
+    node.addEventListener("click", function (e) {
+      e.stopPropagation();
+      panelTitle.textContent = node.dataset.title;
+      panelText.textContent = node.dataset.text;
+      panel.classList.add("show");
+    });
+  });
+
+  closePanel.addEventListener("click", function (e) {
+    e.stopPropagation();
+    panel.classList.remove("show");
+  });
+})();
+</script>
