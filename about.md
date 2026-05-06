@@ -310,48 +310,11 @@ author_profile: true
   </div>
 
 </div>
+<h2 class="section-title">News</h2>
 
-<h2 class="section-title">Research Pipeline</h2>
-
-<div class="pipeline-box">
-  <div class="pipeline-title">Closed-loop hardware-aware optimization framework</div>
-
-  <div class="pipeline-flow">
-    <div class="pipeline-node">DNN Model</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node">Tile DAG</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node">RL Scheduler</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node">PE Array / NPU</div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node">Latency & Energy Feedback</div>
-  </div>
-</div>
-
-<h2 class="section-title">Selected Publications</h2>
-
-<div class="pub-card">
-  <h3>RL-Based Scheduling and Allocation of MAC Units in Multi-Precision Edge CNN Accelerators</h3>
-  <p>
-    <strong>Wei Xiangqing</strong>, Yun-ju Baek.
-    <em>NOLTA 2025 — International Symposium on Nonlinear Theory and Its Applications</em>, 2025.
-  </p>
-  <p class="pub-links">
-    <a href="#">PDF</a>
-    <a href="#">Code</a>
-  </p>
-</div>
-
-<div class="pub-card">
-  <h3>Design and Optimization of Integer Divider Based on SRT4</h3>
-  <p>
-    <strong>Wei Xiangqing</strong>, Qin Shuijie.
-    <em>Microprocessors</em>, Vol. 43, No. 2, pp. 1–5, 2022.
-  </p>
-  <p class="pub-links">
-    <a href="#">PDF</a>
-  </p>
+<div class="highlight-box">
+  <strong>Coming soon.</strong><br>
+  I will update this section with research progress, academic activities, and website updates.
 </div>
 
 <h2 class="section-title">Academic Background</h2>
