@@ -10,6 +10,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background: #020617;
 }
 
 .page,
@@ -20,6 +21,8 @@ html, body {
   background: transparent !important;
   max-width: none !important;
   width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .page__title {
@@ -32,110 +35,101 @@ html, body {
   padding-right: 0 !important;
 }
 
-.blog-world {
+.wei-universe {
   position: relative;
-  min-height: 100vh;
+  width: 100vw;
+  min-height: calc(100vh - 54px);
+  margin-left: calc(50% - 50vw);
   overflow: hidden;
-  color: #e5f7ff;
-  background: #020617;
+  background: radial-gradient(circle at center, #071a2d 0%, #020617 62%, #000 100%);
+  color: #e0f2fe;
 }
 
-#blogParticleCanvas {
+#weiUniverseCanvas {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
-  background:
-    radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.20), transparent 28%),
-    radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.16), transparent 28%),
-    #020617;
+  display: block;
+  z-index: 1;
 }
 
-.blog-noise {
+.universe-vignette {
   position: fixed;
   inset: 0;
-  z-index: 1;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(56, 189, 248, 0.18), transparent 30%),
+    radial-gradient(circle at center, transparent 35%, rgba(0, 0, 0, 0.48) 100%);
+}
+
+.universe-scanline {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(125, 211, 252, 0.045) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
-  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
-  animation: gridDrift 20s linear infinite;
+    linear-gradient(rgba(125, 211, 252, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: 0.62;
+  animation: gridMove 18s linear infinite;
 }
 
-@keyframes gridDrift {
+@keyframes gridMove {
   from { background-position: 0 0; }
-  to { background-position: 96px 96px; }
+  to { background-position: 84px 84px; }
 }
 
-.blog-glow {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
-      rgba(125, 211, 252, 0.24),
-      rgba(59, 130, 246, 0.10) 18%,
-      transparent 42%);
-}
-
-.blog-world-inner {
+.universe-ui {
   position: relative;
-  z-index: 3;
-  max-width: 1180px;
+  z-index: 5;
+  width: min(1180px, calc(100vw - 48px));
   margin: 0 auto;
-  padding: 82px 28px 100px;
+  padding: 82px 0 96px;
+  pointer-events: none;
 }
 
-.blog-hero {
-  min-height: 68vh;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 42px;
-  align-items: center;
-}
-
-.blog-hero-panel {
-  position: relative;
-  overflow: hidden;
-  padding: 48px;
-  border-radius: 36px;
+.universe-hero {
+  width: min(560px, 100%);
+  padding: 42px;
+  border-radius: 34px;
   background: rgba(2, 6, 23, 0.62);
   border: 1px solid rgba(125, 211, 252, 0.28);
   box-shadow:
-    0 0 60px rgba(56, 189, 248, 0.18),
-    inset 0 0 38px rgba(56, 189, 248, 0.06);
+    0 0 70px rgba(56, 189, 248, 0.18),
+    inset 0 0 42px rgba(56, 189, 248, 0.07);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+  pointer-events: auto;
+  overflow: hidden;
+  position: relative;
 }
 
-.blog-hero-panel::before {
+.universe-hero::before {
   content: "";
   position: absolute;
   inset: -2px;
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(125, 211, 252, 0.36),
+    rgba(125, 211, 252, 0.34),
     transparent
   );
-  transform: translateX(-120%);
-  animation: panelScan 5.8s ease-in-out infinite;
+  transform: translateX(-130%);
+  animation: panelScan 5.5s ease-in-out infinite;
   pointer-events: none;
 }
 
 @keyframes panelScan {
-  0% { transform: translateX(-120%); opacity: 0; }
-  15% { opacity: 1; }
-  36% { transform: translateX(120%); opacity: 0; }
-  100% { transform: translateX(120%); opacity: 0; }
+  0% { transform: translateX(-130%); opacity: 0; }
+  16% { opacity: 1; }
+  36% { transform: translateX(130%); opacity: 0; }
+  100% { transform: translateX(130%); opacity: 0; }
 }
 
-.blog-kicker {
+.universe-kicker {
   color: #7dd3fc;
   font-weight: 900;
   letter-spacing: 0.14em;
@@ -144,34 +138,34 @@ html, body {
   margin-bottom: 14px;
 }
 
-.blog-hero-panel h1 {
+.universe-hero h1 {
   margin: 0;
   color: #ffffff;
-  font-size: 58px;
-  line-height: 1.04;
-  letter-spacing: -0.05em;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
 }
 
-.blog-hero-panel h2 {
+.universe-hero h2 {
   margin: 16px 0 0;
   color: #bae6fd;
-  font-size: 24px;
-  font-weight: 800;
+  font-size: 23px;
+  line-height: 1.35;
+  font-weight: 900;
 }
 
-.blog-hero-panel p {
+.universe-hero p {
   margin-top: 24px;
   color: #dbeafe;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.85;
-  max-width: 760px;
 }
 
-.blog-actions {
-  margin-top: 30px;
+.universe-actions {
+  margin-top: 28px;
 }
 
-.blog-actions a {
+.universe-actions a {
   display: inline-block;
   margin: 7px 9px 7px 0;
   padding: 12px 18px;
@@ -180,251 +174,144 @@ html, body {
   color: #020617;
   font-weight: 900;
   text-decoration: none;
-  box-shadow: 0 0 24px rgba(125, 211, 252, 0.42);
+  box-shadow: 0 0 28px rgba(125, 211, 252, 0.44);
   transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
 }
 
-.blog-actions a:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 0 34px rgba(125, 211, 252, 0.74);
+.universe-actions a:hover {
+  transform: translateY(-4px) scale(1.035);
   background: #e0f2fe;
+  box-shadow: 0 0 44px rgba(125, 211, 252, 0.74);
 }
 
-.blog-actions a.secondary {
+.universe-actions a.secondary {
   background: rgba(15, 23, 42, 0.66);
   color: #e0f2fe;
-  border: 1px solid rgba(125, 211, 252, 0.36);
-}
-
-.orbit-area {
-  position: relative;
-  height: 520px;
-}
-
-.orbit-core {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 235px;
-  height: 235px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.95), rgba(125,211,252,0.42) 22%, rgba(37,99,235,0.10) 54%, rgba(2,6,23,0.88) 76%);
-  border: 1px solid rgba(125, 211, 252, 0.46);
-  box-shadow:
-    0 0 48px rgba(56, 189, 248, 0.58),
-    0 0 130px rgba(59, 130, 246, 0.30);
-  z-index: 5;
-  animation: corePulse 3.2s ease-in-out infinite;
-}
-
-@keyframes corePulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow:
-      0 0 48px rgba(56, 189, 248, 0.58),
-      0 0 130px rgba(59, 130, 246, 0.30);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.035);
-    box-shadow:
-      0 0 70px rgba(125, 211, 252, 0.76),
-      0 0 160px rgba(59, 130, 246, 0.38);
-  }
-}
-
-.orbit-ring {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border-radius: 50%;
-  border: 1px solid rgba(125, 211, 252, 0.28);
-  transform: translate(-50%, -50%);
-}
-
-.ring-a {
-  width: 360px;
-  height: 360px;
-  animation: rotateRing 18s linear infinite;
-}
-
-.ring-b {
-  width: 480px;
-  height: 480px;
-  animation: rotateRingReverse 28s linear infinite;
-}
-
-@keyframes rotateRing {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes rotateRingReverse {
-  from { transform: translate(-50%, -50%) rotate(360deg); }
-  to { transform: translate(-50%, -50%) rotate(0deg); }
-}
-
-.blog-node {
-  position: absolute;
-  padding: 13px 17px;
-  border-radius: 18px;
-  background: rgba(2, 6, 23, 0.74);
   border: 1px solid rgba(125, 211, 252, 0.38);
+}
+
+.universe-node {
+  position: fixed;
+  z-index: 8;
+  padding: 12px 17px;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.74);
   color: #e0f2fe;
+  border: 1px solid rgba(125, 211, 252, 0.42);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.24);
+  font-size: 14px;
   font-weight: 900;
   cursor: pointer;
   user-select: none;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 28px rgba(56, 189, 248, 0.18);
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
-  z-index: 8;
+    background 0.24s ease,
+    color 0.24s ease,
+    box-shadow 0.24s ease,
+    padding 0.24s ease;
 }
 
-.blog-node:hover {
-  transform: translateY(-8px) scale(1.08);
-  background: rgba(125, 211, 252, 0.95);
+.universe-node:hover {
+  background: rgba(125, 211, 252, 0.96);
   color: #020617;
+  padding: 14px 21px;
   box-shadow:
-    0 0 28px rgba(125, 211, 252, 0.95),
-    0 0 80px rgba(56, 189, 248, 0.46);
+    0 0 28px rgba(125, 211, 252, 0.96),
+    0 0 86px rgba(56, 189, 248, 0.48);
 }
 
-.node-note { left: 4%; top: 16%; }
-.node-research { right: 3%; top: 19%; }
-.node-code { left: 7%; bottom: 17%; }
-.node-life { right: 8%; bottom: 16%; }
-
-.blog-section-title {
-  margin: 48px 0 24px;
-  color: #ffffff;
-  font-size: 30px;
-  letter-spacing: -0.02em;
-  text-shadow: 0 0 22px rgba(56, 189, 248, 0.42);
-}
-
-.blog-card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.blog-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 230px;
-  padding: 26px;
-  border-radius: 28px;
-  background: rgba(2, 6, 23, 0.64);
-  border: 1px solid rgba(125, 211, 252, 0.25);
-  box-shadow:
-    0 20px 58px rgba(0, 0, 0, 0.34),
-    inset 0 0 26px rgba(56, 189, 248, 0.06);
-  backdrop-filter: blur(16px);
-  color: #e5f7ff;
-  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
-}
-
-.blog-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at top right, rgba(125, 211, 252, 0.22), transparent 36%);
-  opacity: 0;
-  transition: opacity 0.28s ease;
-}
-
-.blog-card:hover {
-  transform: translateY(-10px) scale(1.015);
-  border-color: rgba(125, 211, 252, 0.74);
-  box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.44),
-    0 0 38px rgba(56, 189, 248, 0.23);
-}
-
-.blog-card:hover::after {
-  opacity: 1;
-}
-
-.blog-card h3 {
-  position: relative;
-  z-index: 2;
-  color: #7dd3fc;
-  margin: 0 0 12px;
-  font-size: 22px;
-}
-
-.blog-card p {
-  position: relative;
-  z-index: 2;
-  color: #dbeafe;
-  line-height: 1.78;
-}
-
-.blog-card .hidden-info {
-  position: relative;
-  z-index: 2;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transform: translateY(10px);
-  transition: all 0.32s ease;
-  color: #bae6fd;
-}
-
-.blog-card:hover .hidden-info {
-  max-height: 120px;
-  opacity: 1;
-  transform: translateY(0);
-  margin-top: 12px;
-}
-
-.info-panel {
+.universe-panel {
   position: fixed;
   right: 34px;
   bottom: 34px;
-  width: min(420px, calc(100vw - 68px));
-  padding: 24px;
-  border-radius: 26px;
-  background: rgba(2, 6, 23, 0.86);
+  width: min(430px, calc(100vw - 68px));
+  z-index: 12;
+  padding: 25px;
+  border-radius: 28px;
+  background: rgba(2, 6, 23, 0.82);
   border: 1px solid rgba(125, 211, 252, 0.38);
-  box-shadow: 0 0 48px rgba(56, 189, 248, 0.25);
-  backdrop-filter: blur(18px);
-  color: #e0f2fe;
+  box-shadow:
+    0 0 48px rgba(56, 189, 248, 0.28),
+    inset 0 0 32px rgba(56, 189, 248, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   transform: translateY(24px);
   opacity: 0;
   pointer-events: none;
   transition: all 0.28s ease;
-  z-index: 40;
 }
 
-.info-panel.show {
+.universe-panel.show {
   transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
 
-.info-panel h3 {
+.universe-panel h3 {
   color: #7dd3fc;
-  margin-top: 0;
+  margin: 0 28px 10px 0;
+  font-size: 22px;
 }
 
-.info-panel p {
+.universe-panel p {
+  color: #dbeafe;
   line-height: 1.75;
+  margin-bottom: 0;
 }
 
-.close-panel {
+.close-universe-panel {
   position: absolute;
-  top: 12px;
-  right: 16px;
-  cursor: pointer;
+  top: 14px;
+  right: 18px;
   color: #bae6fd;
+  cursor: pointer;
+  font-size: 20px;
   font-weight: 900;
+}
+
+.universe-bottom {
+  margin-top: 44vh;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  pointer-events: auto;
+}
+
+.universe-card {
+  min-height: 180px;
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(2, 6, 23, 0.58);
+  border: 1px solid rgba(125, 211, 252, 0.25);
+  box-shadow:
+    0 22px 58px rgba(0, 0, 0, 0.34),
+    inset 0 0 28px rgba(56, 189, 248, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.universe-card:hover {
+  transform: translateY(-10px) scale(1.018);
+  border-color: rgba(125, 211, 252, 0.68);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.46),
+    0 0 40px rgba(56, 189, 248, 0.24);
+}
+
+.universe-card h3 {
+  margin: 0 0 10px 0;
+  color: #7dd3fc;
+  font-size: 19px;
+}
+
+.universe-card p {
+  margin: 0;
+  color: #dbeafe;
+  line-height: 1.7;
+  font-size: 14px;
 }
 
 .energy-ripple {
@@ -432,11 +319,11 @@ html, body {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid rgba(125, 211, 252, 0.9);
-  box-shadow: 0 0 24px rgba(125, 211, 252, 0.8);
+  border: 2px solid rgba(125, 211, 252, 0.92);
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.88);
   pointer-events: none;
   z-index: 9999;
-  animation: energy 0.8s ease-out forwards;
+  animation: energy 0.85s ease-out forwards;
 }
 
 @keyframes energy {
@@ -450,334 +337,497 @@ html, body {
   }
 }
 
-@media (max-width: 900px) {
-  .blog-world-inner {
-    padding: 54px 18px 80px;
+@media (max-width: 980px) {
+  .universe-ui {
+    padding-top: 52px;
   }
 
-  .blog-hero {
+  .universe-hero {
+    padding: 30px;
+  }
+
+  .universe-bottom {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 36vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .universe-bottom {
     grid-template-columns: 1fr;
   }
 
-  .orbit-area {
-    height: 430px;
-  }
-
-  .blog-card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .blog-hero-panel h1 {
-    font-size: 42px;
-  }
-
-  .orbit-core {
-    width: 190px;
-    height: 190px;
-  }
-
-  .ring-a {
-    width: 300px;
-    height: 300px;
-  }
-
-  .ring-b {
-    width: 380px;
-    height: 380px;
+  .universe-node {
+    display: none;
   }
 }
 </style>
 
-<div class="blog-world">
-  <canvas id="blogParticleCanvas"></canvas>
-  <div class="blog-noise"></div>
-  <div class="blog-glow"></div>
+<div class="wei-universe">
+  <canvas id="weiUniverseCanvas"></canvas>
+  <div class="universe-vignette"></div>
+  <div class="universe-scanline"></div>
 
-  <div class="blog-world-inner">
+  <div class="universe-ui">
+    <section class="universe-hero">
+      <div class="universe-kicker">Interactive Blog Space</div>
 
-    <section class="blog-hero">
+      <h1>卫的宇宙</h1>
 
-      <div class="blog-hero-panel">
-        <div class="blog-kicker">Interactive Blog Space</div>
+      <h2>Research Notes · Technical Logs · Personal Updates</h2>
 
-        <h1>Wei's Blog Universe</h1>
-        <h2>Research Notes · Technical Logs · Personal Updates</h2>
+      <p>
+        Welcome to my interactive blog universe. This page is designed as a visual space
+        for research notes, technical logs, experimental records, and personal updates
+        around AI accelerators, reinforcement learning, FPGA/NPU systems, and digital circuit design.
+      </p>
 
-        <p>
-          This is my interactive blog space. I use this page to collect research notes,
-          technical logs, learning records, and selected updates on AI accelerators,
-          reinforcement learning, FPGA/NPU systems, and digital circuit design.
-        </p>
-
-        <div class="blog-actions">
-          <a href="{{ site.baseurl }}/">Profile</a>
-          <a class="secondary" href="{{ site.baseurl }}/publications/">Publications</a>
-          <a class="secondary" href="https://github.com/wxq96">GitHub</a>
-        </div>
+      <div class="universe-actions">
+        <a href="{{ site.baseurl }}/">Profile</a>
+        <a class="secondary" href="{{ site.baseurl }}/publications/">Publications</a>
+        <a class="secondary" href="https://github.com/wxq96">GitHub</a>
       </div>
-
-      <div class="orbit-area">
-        <div class="orbit-ring ring-a"></div>
-        <div class="orbit-ring ring-b"></div>
-        <div class="orbit-core"></div>
-
-        <div class="blog-node node-note"
-             data-title="Research Notes"
-             data-text="Short notes about AI accelerators, scheduling problems, FPGA/NPU design, and reinforcement-learning-based optimization.">
-          Notes
-        </div>
-
-        <div class="blog-node node-research"
-             data-title="Research Logs"
-             data-text="Logs for ongoing experiments, paper ideas, debugging records, and research direction refinement.">
-          Research
-        </div>
-
-        <div class="blog-node node-code"
-             data-title="Code Logs"
-             data-text="Implementation notes for Python, RTL, SystemVerilog, simulation scripts, and hardware modeling.">
-          Code
-        </div>
-
-        <div class="blog-node node-life"
-             data-title="Personal Updates"
-             data-text="Academic life, website updates, personal reflections, and small records during my PhD journey.">
-          Updates
-        </div>
-      </div>
-
     </section>
 
-    <h2 class="blog-section-title">Blog Entries</h2>
-
-    <div class="blog-card-grid">
-
-      <div class="blog-card">
+    <div class="universe-bottom">
+      <div class="universe-card">
         <h3>Research Notes</h3>
-        <p>
-          Notes on AI hardware, NPU architecture, scheduling, and hardware-aware optimization.
-        </p>
-        <div class="hidden-info">
-          This section will be used for technical summaries and research thinking records.
-        </div>
+        <p>Short notes on AI accelerators, hardware-aware scheduling, and architecture exploration.</p>
       </div>
 
-      <div class="blog-card">
+      <div class="universe-card">
         <h3>Experiment Logs</h3>
-        <p>
-          Logs for experiments, simulation results, debugging process, and implementation details.
-        </p>
-        <div class="hidden-info">
-          I plan to use this space to record trial-and-error during research development.
-        </div>
+        <p>Records of simulations, debugging, training curves, and hardware modeling experiments.</p>
       </div>
 
-      <div class="blog-card">
-        <h3>Learning Records</h3>
-        <p>
-          Learning notes on computer architecture, RTL design, FPGA, reinforcement learning, and EDA.
-        </p>
-        <div class="hidden-info">
-          These notes help organize my long-term research and engineering knowledge.
-        </div>
+      <div class="universe-card">
+        <h3>Code & RTL</h3>
+        <p>Implementation notes for Python, SystemVerilog, RTL simulation, and FPGA/NPU workflows.</p>
       </div>
 
-      <div class="blog-card">
+      <div class="universe-card">
         <h3>Personal Updates</h3>
-        <p>
-          Website updates, academic progress, and selected personal reflections.
-        </p>
-        <div class="hidden-info">
-          This part keeps the website alive, instead of leaving it as a static CV page.
-        </div>
+        <p>Academic life, website updates, personal reflections, and small progress records.</p>
       </div>
-
     </div>
-
   </div>
 
-  <div class="info-panel" id="infoPanel">
-    <div class="close-panel" id="closePanel">×</div>
-    <h3 id="panelTitle">Blog Space</h3>
-    <p id="panelText">Click a node to explore more.</p>
+  <div class="universe-node" data-key="research">Research</div>
+  <div class="universe-node" data-key="experiment">Experiments</div>
+  <div class="universe-node" data-key="code">Code / RTL</div>
+  <div class="universe-node" data-key="life">Updates</div>
+
+  <div class="universe-panel" id="universePanel">
+    <div class="close-universe-panel" id="closeUniversePanel">×</div>
+    <h3 id="universePanelTitle">卫的宇宙</h3>
+    <p id="universePanelText">Click a node to explore this blog universe.</p>
   </div>
 </div>
 
-<script>
-(function () {
-  const canvas = document.getElementById("blogParticleCanvas");
-  const ctx = canvas.getContext("2d");
-  const root = document.documentElement;
-  const panel = document.getElementById("infoPanel");
-  const panelTitle = document.getElementById("panelTitle");
-  const panelText = document.getElementById("panelText");
-  const closePanel = document.getElementById("closePanel");
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
 
-  let width, height;
-  let particles = [];
-  const mouse = { x: 0, y: 0, active: false };
+<script type="module">
+import * as THREE from "three";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-    initParticles();
+const canvas = document.getElementById("weiUniverseCanvas");
+const root = document.documentElement;
+const panel = document.getElementById("universePanel");
+const panelTitle = document.getElementById("universePanelTitle");
+const panelText = document.getElementById("universePanelText");
+const closePanel = document.getElementById("closeUniversePanel");
+const labels = Array.from(document.querySelectorAll(".universe-node"));
+
+const info = {
+  research: {
+    title: "Research Notes",
+    text: "Research notes about AI accelerators, hardware-aware scheduling, reinforcement-learning-based optimization, and architecture exploration."
+  },
+  experiment: {
+    title: "Experiment Logs",
+    text: "Experiment logs for simulation results, training behavior, debugging records, workload modeling, and performance analysis."
+  },
+  code: {
+    title: "Code / RTL",
+    text: "Implementation records for Python, SystemVerilog, RTL design, FPGA/NPU workflows, and hardware modeling scripts."
+  },
+  life: {
+    title: "Personal Updates",
+    text: "Personal updates about academic life, website changes, research progress, and selected reflections during my PhD journey."
+  }
+};
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x020617, 0.045);
+
+const camera = new THREE.PerspectiveCamera(58, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 1.15, 8.2);
+
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  antialias: true,
+  alpha: false
+});
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x020617, 1);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  0.9,
+  0.72,
+  0.16
+);
+composer.addPass(bloomPass);
+
+const ambient = new THREE.AmbientLight(0x4cc9f0, 0.38);
+scene.add(ambient);
+
+const mainLight = new THREE.PointLight(0x7dd3fc, 3.2, 18);
+mainLight.position.set(-2.8, 3.4, 4.6);
+scene.add(mainLight);
+
+const backLight = new THREE.PointLight(0x2563eb, 2.2, 16);
+backLight.position.set(4, -2.6, -3.2);
+scene.add(backLight);
+
+const universe = new THREE.Group();
+scene.add(universe);
+
+/* Central chip */
+const chipGroup = new THREE.Group();
+universe.add(chipGroup);
+
+const chipGeometry = new THREE.BoxGeometry(3.9, 0.24, 2.45, 12, 1, 8);
+const chipMaterial = new THREE.MeshStandardMaterial({
+  color: 0x07111f,
+  metalness: 0.78,
+  roughness: 0.24,
+  emissive: 0x031d31,
+  emissiveIntensity: 0.42
+});
+
+const chip = new THREE.Mesh(chipGeometry, chipMaterial);
+chipGroup.add(chip);
+
+const edge = new THREE.EdgesGeometry(chipGeometry);
+const edgeMat = new THREE.LineBasicMaterial({
+  color: 0x7dd3fc,
+  transparent: true,
+  opacity: 0.42
+});
+const chipEdges = new THREE.LineSegments(edge, edgeMat);
+chipGroup.add(chipEdges);
+
+/* Circuit traces on chip */
+const traceMaterial = new THREE.LineBasicMaterial({
+  color: 0x38bdf8,
+  transparent: true,
+  opacity: 0.78
+});
+
+for (let i = 0; i < 44; i++) {
+  const points = [];
+  const startX = -1.75 + Math.random() * 3.5;
+  const startZ = -1.0 + Math.random() * 2.0;
+  const length = 0.25 + Math.random() * 0.72;
+  const direction = Math.random() > 0.5 ? "x" : "z";
+
+  points.push(new THREE.Vector3(startX, 0.145, startZ));
+
+  if (direction === "x") {
+    points.push(new THREE.Vector3(startX + length, 0.145, startZ));
+    points.push(new THREE.Vector3(startX + length, 0.145, startZ + (Math.random() - 0.5) * 0.35));
+  } else {
+    points.push(new THREE.Vector3(startX, 0.145, startZ + length));
+    points.push(new THREE.Vector3(startX + (Math.random() - 0.5) * 0.35, 0.145, startZ + length));
   }
 
-  class Particle {
-    constructor() {
-      this.reset();
-    }
+  const g = new THREE.BufferGeometry().setFromPoints(points);
+  const line = new THREE.Line(g, traceMaterial);
+  chipGroup.add(line);
+}
 
-    reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.65;
-      this.vy = (Math.random() - 0.5) * 0.65;
-      this.size = Math.random() * 2.2 + 0.7;
-      this.baseSize = this.size;
-      this.color = Math.random() > 0.5
-        ? "rgba(125, 211, 252, 0.88)"
-        : "rgba(59, 130, 246, 0.76)";
-    }
+/* Chip core glow */
+const coreGeometry = new THREE.SphereGeometry(0.62, 48, 48);
+const coreMaterial = new THREE.MeshBasicMaterial({
+  color: 0x7dd3fc,
+  transparent: true,
+  opacity: 0.22,
+  blending: THREE.AdditiveBlending
+});
+const coreGlow = new THREE.Mesh(coreGeometry, coreMaterial);
+coreGlow.position.set(0, 0.22, 0);
+coreGlow.scale.set(1.2, 0.18, 1.2);
+chipGroup.add(coreGlow);
 
-    update() {
-      if (mouse.active) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+/* Orbit rings */
+function makeRing(radius, color, opacity) {
+  const curve = new THREE.EllipseCurve(0, 0, radius, radius, 0, Math.PI * 2, false, 0);
+  const points = curve.getPoints(220).map(p => new THREE.Vector3(p.x, 0, p.y));
+  const geo = new THREE.BufferGeometry().setFromPoints(points);
+  const mat = new THREE.LineBasicMaterial({
+    color,
+    transparent: true,
+    opacity
+  });
+  const ring = new THREE.LineLoop(geo, mat);
+  ring.rotation.x = Math.PI / 2.6;
+  return ring;
+}
 
-        if (dist < 210) {
-          const force = (210 - dist) / 210;
-          this.vx += (dx / dist) * force * 0.045;
-          this.vy += (dy / dist) * force * 0.045;
-          this.size = this.baseSize + force * 2.2;
-        } else {
-          this.size += (this.baseSize - this.size) * 0.06;
-        }
-      }
+const ring1 = makeRing(2.85, 0x7dd3fc, 0.28);
+const ring2 = makeRing(4.05, 0x38bdf8, 0.16);
+universe.add(ring1, ring2);
 
-      this.x += this.vx;
-      this.y += this.vy;
+/* Nodes */
+const nodeMeshes = {};
+const nodePositions = {
+  research: new THREE.Vector3(-3.3, 1.25, 0.4),
+  experiment: new THREE.Vector3(3.35, 1.1, 0.55),
+  code: new THREE.Vector3(-3.05, -1.35, 0.35),
+  life: new THREE.Vector3(3.05, -1.25, 0.45)
+};
 
-      this.vx *= 0.985;
-      this.vy *= 0.985;
+const nodeGeo = new THREE.SphereGeometry(0.13, 32, 32);
+const nodeMat = new THREE.MeshBasicMaterial({
+  color: 0x7dd3fc,
+  transparent: true,
+  opacity: 0.96
+});
 
-      if (this.x < -20 || this.x > width + 20 || this.y < -20 || this.y > height + 20) {
-        this.reset();
-      }
-    }
+Object.entries(nodePositions).forEach(([key, pos]) => {
+  const sphere = new THREE.Mesh(nodeGeo, nodeMat.clone());
+  sphere.position.copy(pos);
+  sphere.name = key;
+  universe.add(sphere);
 
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.shadowBlur = 18;
-      ctx.shadowColor = "#7dd3fc";
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
+  const haloGeo = new THREE.SphereGeometry(0.42, 32, 32);
+  const haloMat = new THREE.MeshBasicMaterial({
+    color: 0x38bdf8,
+    transparent: true,
+    opacity: 0.12,
+    blending: THREE.AdditiveBlending
+  });
+  const halo = new THREE.Mesh(haloGeo, haloMat);
+  halo.position.copy(pos);
+  universe.add(halo);
+
+  nodeMeshes[key] = { sphere, halo };
+});
+
+/* Flow curves */
+for (let i = 0; i < 16; i++) {
+  const radius = 3.0 + Math.random() * 2.2;
+  const y = -1.6 + Math.random() * 3.2;
+
+  const curvePoints = [];
+  for (let j = 0; j < 90; j++) {
+    const t = (j / 89) * Math.PI * 2;
+    curvePoints.push(new THREE.Vector3(
+      Math.cos(t) * radius,
+      y + Math.sin(t * 2 + i) * 0.12,
+      Math.sin(t) * radius * 0.34
+    ));
   }
 
-  function initParticles() {
-    particles = [];
-    const count = Math.min(170, Math.floor(window.innerWidth / 8));
-    for (let i = 0; i < count; i++) {
-      particles.push(new Particle());
-    }
-  }
-
-  function drawConnections() {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 115) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(125, 211, 252, ${0.14 * (1 - dist / 115)})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-
-    const gx = mouse.active ? mouse.x : width / 2;
-    const gy = mouse.active ? mouse.y : height / 2;
-
-    const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, 460);
-    gradient.addColorStop(0, "rgba(56, 189, 248, 0.12)");
-    gradient.addColorStop(1, "rgba(2, 6, 23, 0)");
-
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, width, height);
-
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
-
-    drawConnections();
-    requestAnimationFrame(animate);
-  }
-
-  window.addEventListener("resize", resize);
-
-  window.addEventListener("mousemove", function (e) {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouse.active = true;
-
-    root.style.setProperty("--mx", (e.clientX / window.innerWidth * 100) + "%");
-    root.style.setProperty("--my", (e.clientY / window.innerHeight * 100) + "%");
+  const geo = new THREE.BufferGeometry().setFromPoints(curvePoints);
+  const mat = new THREE.LineBasicMaterial({
+    color: i % 2 ? 0x2563eb : 0x38bdf8,
+    transparent: true,
+    opacity: 0.06 + Math.random() * 0.11
   });
 
-  window.addEventListener("mouseleave", function () {
-    mouse.active = false;
-  });
+  const line = new THREE.LineLoop(geo, mat);
+  line.rotation.x = Math.random() * 0.6;
+  line.rotation.y = Math.random() * 0.4;
+  universe.add(line);
+}
 
-  window.addEventListener("click", function (e) {
-    const ripple = document.createElement("div");
-    ripple.className = "energy-ripple";
-    ripple.style.left = e.clientX + "px";
-    ripple.style.top = e.clientY + "px";
-    document.body.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 820);
+/* Star particles */
+const particleCount = 1450;
+const particlePositions = new Float32Array(particleCount * 3);
+const particleColors = new Float32Array(particleCount * 3);
 
-    particles.forEach(p => {
-      const dx = p.x - e.clientX;
-      const dy = p.y - e.clientY;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+for (let i = 0; i < particleCount; i++) {
+  const radius = 8 + Math.random() * 18;
+  const theta = Math.random() * Math.PI * 2;
+  const phi = Math.acos((Math.random() * 2) - 1);
 
-      if (dist < 240) {
-        const force = (240 - dist) / 240;
-        p.vx += (dx / dist) * force * 8;
-        p.vy += (dy / dist) * force * 8;
-      }
-    });
-  });
+  particlePositions[i * 3 + 0] = Math.sin(phi) * Math.cos(theta) * radius;
+  particlePositions[i * 3 + 1] = Math.cos(phi) * radius * 0.55;
+  particlePositions[i * 3 + 2] = Math.sin(phi) * Math.sin(theta) * radius;
 
-  document.querySelectorAll(".blog-node").forEach(function (node) {
-    node.addEventListener("click", function (e) {
-      e.stopPropagation();
-      panelTitle.textContent = node.dataset.title;
-      panelText.textContent = node.dataset.text;
-      panel.classList.add("show");
-    });
-  });
+  const c = new THREE.Color(Math.random() > 0.55 ? 0x7dd3fc : 0x2563eb);
+  particleColors[i * 3 + 0] = c.r;
+  particleColors[i * 3 + 1] = c.g;
+  particleColors[i * 3 + 2] = c.b;
+}
 
-  closePanel.addEventListener("click", function (e) {
+const particleGeo = new THREE.BufferGeometry();
+particleGeo.setAttribute("position", new THREE.BufferAttribute(particlePositions, 3));
+particleGeo.setAttribute("color", new THREE.BufferAttribute(particleColors, 3));
+
+const particleMat = new THREE.PointsMaterial({
+  size: 0.035,
+  vertexColors: true,
+  transparent: true,
+  opacity: 0.78,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false
+});
+
+const particles = new THREE.Points(particleGeo, particleMat);
+scene.add(particles);
+
+/* Mouse interaction */
+let mouseX = 0;
+let mouseY = 0;
+let targetRotX = 0;
+let targetRotY = 0;
+
+window.addEventListener("mousemove", (e) => {
+  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+  mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+
+  root.style.setProperty("--mx", (e.clientX / window.innerWidth * 100) + "%");
+  root.style.setProperty("--my", (e.clientY / window.innerHeight * 100) + "%");
+
+  targetRotY = mouseX * 0.28;
+  targetRotX = mouseY * 0.16;
+});
+
+window.addEventListener("click", (e) => {
+  const ripple = document.createElement("div");
+  ripple.className = "energy-ripple";
+  ripple.style.left = e.clientX + "px";
+  ripple.style.top = e.clientY + "px";
+  document.body.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 880);
+});
+
+/* Panels */
+function openPanel(key) {
+  if (!info[key]) return;
+  panelTitle.textContent = info[key].title;
+  panelText.textContent = info[key].text;
+  panel.classList.add("show");
+}
+
+labels.forEach(label => {
+  label.addEventListener("click", (e) => {
     e.stopPropagation();
-    panel.classList.remove("show");
+    openPanel(label.dataset.key);
+  });
+});
+
+closePanel.addEventListener("click", (e) => {
+  e.stopPropagation();
+  panel.classList.remove("show");
+});
+
+/* Raycaster for clicking 3D nodes */
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+
+canvas.addEventListener("click", (e) => {
+  pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(pointer, camera);
+  const meshes = Object.values(nodeMeshes).map(v => v.sphere);
+  const hits = raycaster.intersectObjects(meshes);
+
+  if (hits.length > 0) {
+    openPanel(hits[0].object.name);
+  }
+});
+
+/* Resize */
+function resize() {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(w, h);
+  composer.setSize(w, h);
+}
+
+window.addEventListener("resize", resize);
+
+/* Label positioning */
+function updateLabels() {
+  labels.forEach(label => {
+    const key = label.dataset.key;
+    const mesh = nodeMeshes[key]?.sphere;
+    if (!mesh) return;
+
+    const pos = new THREE.Vector3();
+    mesh.getWorldPosition(pos);
+    pos.project(camera);
+
+    const x = (pos.x * 0.5 + 0.5) * window.innerWidth;
+    const y = (-pos.y * 0.5 + 0.5) * window.innerHeight;
+
+    label.style.left = x + "px";
+    label.style.top = y + "px";
+  });
+}
+
+/* Animation loop */
+const clock = new THREE.Clock();
+
+function animate() {
+  const t = clock.getElapsedTime();
+
+  universe.rotation.y += (targetRotY - universe.rotation.y) * 0.035;
+  universe.rotation.x += (targetRotX - universe.rotation.x) * 0.035;
+
+  chipGroup.rotation.y = Math.sin(t * 0.45) * 0.15;
+  chipGroup.rotation.x = Math.sin(t * 0.32) * 0.06;
+
+  ring1.rotation.z += 0.0035;
+  ring2.rotation.z -= 0.0024;
+
+  coreGlow.scale.set(
+    1.2 + Math.sin(t * 2.4) * 0.08,
+    0.18,
+    1.2 + Math.sin(t * 2.4) * 0.08
+  );
+
+  Object.entries(nodeMeshes).forEach(([key, obj], idx) => {
+    const pulse = 1 + Math.sin(t * 2.2 + idx) * 0.18;
+    obj.halo.scale.setScalar(pulse);
+    obj.sphere.scale.setScalar(1 + Math.sin(t * 2.8 + idx) * 0.18);
   });
 
-  resize();
-  animate();
-})();
+  particles.rotation.y += 0.0009;
+  particles.rotation.x += 0.00025;
+
+  camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.025;
+  camera.position.y += ((1.15 - mouseY * 0.28) - camera.position.y) * 0.025;
+  camera.lookAt(0, 0, 0);
+
+  updateLabels();
+  composer.render();
+  requestAnimationFrame(animate);
+}
+
+resize();
+animate();
 </script>
