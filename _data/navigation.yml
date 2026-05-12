@@ -1,33 +1,783 @@
-# The following is the order of the links in the header of the website.
-#
-# Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
-#
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
+---
+layout: single
+title: " "
+permalink: /year-archive/
+author_profile: false
+---
 
-main:
-  - title: "Publications"
-    url: /publications/
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
-  #- title: "Talks"
-  #  url: /talks/    
+.page,
+.archive,
+.initial-content,
+.page__content,
+.page__inner-wrap {
+  background: transparent !important;
+  max-width: none !important;
+  width: 100% !important;
+}
 
-  #- title: "Teaching"
-  #  url: /teaching/    
-    
-  - title: "Profile"
-    url: /cv/
-        
-  - title: "Blog Posts"
-    url: /year-archive/
-    
-  #- title: "CV"
-  #  url: /cv/
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
-  #- title: "Guide"
-  #  url: /markdown/
+.page__title {
+  display: none !important;
+}
+
+#main {
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.blog-world {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #e5f7ff;
+  background: #020617;
+}
+
+#blogParticleCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.20), transparent 28%),
+    radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.16), transparent 28%),
+    #020617;
+}
+
+.blog-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(125, 211, 252, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+  animation: gridDrift 20s linear infinite;
+}
+
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to { background-position: 96px 96px; }
+}
+
+.blog-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%),
+      rgba(125, 211, 252, 0.24),
+      rgba(59, 130, 246, 0.10) 18%,
+      transparent 42%);
+}
+
+.blog-world-inner {
+  position: relative;
+  z-index: 3;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 82px 28px 100px;
+}
+
+.blog-hero {
+  min-height: 68vh;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.blog-hero-panel {
+  position: relative;
+  overflow: hidden;
+  padding: 48px;
+  border-radius: 36px;
+  background: rgba(2, 6, 23, 0.62);
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  box-shadow:
+    0 0 60px rgba(56, 189, 248, 0.18),
+    inset 0 0 38px rgba(56, 189, 248, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.blog-hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(125, 211, 252, 0.36),
+    transparent
+  );
+  transform: translateX(-120%);
+  animation: panelScan 5.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes panelScan {
+  0% { transform: translateX(-120%); opacity: 0; }
+  15% { opacity: 1; }
+  36% { transform: translateX(120%); opacity: 0; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+.blog-kicker {
+  color: #7dd3fc;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.blog-hero-panel h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 58px;
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.blog-hero-panel h2 {
+  margin: 16px 0 0;
+  color: #bae6fd;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.blog-hero-panel p {
+  margin-top: 24px;
+  color: #dbeafe;
+  font-size: 17px;
+  line-height: 1.85;
+  max-width: 760px;
+}
+
+.blog-actions {
+  margin-top: 30px;
+}
+
+.blog-actions a {
+  display: inline-block;
+  margin: 7px 9px 7px 0;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #7dd3fc;
+  color: #020617;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.42);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+}
+
+.blog-actions a:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 34px rgba(125, 211, 252, 0.74);
+  background: #e0f2fe;
+}
+
+.blog-actions a.secondary {
+  background: rgba(15, 23, 42, 0.66);
+  color: #e0f2fe;
+  border: 1px solid rgba(125, 211, 252, 0.36);
+}
+
+.orbit-area {
+  position: relative;
+  height: 520px;
+}
+
+.orbit-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 235px;
+  height: 235px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.95), rgba(125,211,252,0.42) 22%, rgba(37,99,235,0.10) 54%, rgba(2,6,23,0.88) 76%);
+  border: 1px solid rgba(125, 211, 252, 0.46);
+  box-shadow:
+    0 0 48px rgba(56, 189, 248, 0.58),
+    0 0 130px rgba(59, 130, 246, 0.30);
+  z-index: 5;
+  animation: corePulse 3.2s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow:
+      0 0 48px rgba(56, 189, 248, 0.58),
+      0 0 130px rgba(59, 130, 246, 0.30);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.035);
+    box-shadow:
+      0 0 70px rgba(125, 211, 252, 0.76),
+      0 0 160px rgba(59, 130, 246, 0.38);
+  }
+}
+
+.orbit-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  transform: translate(-50%, -50%);
+}
+
+.ring-a {
+  width: 360px;
+  height: 360px;
+  animation: rotateRing 18s linear infinite;
+}
+
+.ring-b {
+  width: 480px;
+  height: 480px;
+  animation: rotateRingReverse 28s linear infinite;
+}
+
+@keyframes rotateRing {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes rotateRingReverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.blog-node {
+  position: absolute;
+  padding: 13px 17px;
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.74);
+  border: 1px solid rgba(125, 211, 252, 0.38);
+  color: #e0f2fe;
+  font-weight: 900;
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.18);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+  z-index: 8;
+}
+
+.blog-node:hover {
+  transform: translateY(-8px) scale(1.08);
+  background: rgba(125, 211, 252, 0.95);
+  color: #020617;
+  box-shadow:
+    0 0 28px rgba(125, 211, 252, 0.95),
+    0 0 80px rgba(56, 189, 248, 0.46);
+}
+
+.node-note { left: 4%; top: 16%; }
+.node-research { right: 3%; top: 19%; }
+.node-code { left: 7%; bottom: 17%; }
+.node-life { right: 8%; bottom: 16%; }
+
+.blog-section-title {
+  margin: 48px 0 24px;
+  color: #ffffff;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 22px rgba(56, 189, 248, 0.42);
+}
+
+.blog-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.blog-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 230px;
+  padding: 26px;
+  border-radius: 28px;
+  background: rgba(2, 6, 23, 0.64);
+  border: 1px solid rgba(125, 211, 252, 0.25);
+  box-shadow:
+    0 20px 58px rgba(0, 0, 0, 0.34),
+    inset 0 0 26px rgba(56, 189, 248, 0.06);
+  backdrop-filter: blur(16px);
+  color: #e5f7ff;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.blog-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(125, 211, 252, 0.22), transparent 36%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(125, 211, 252, 0.74);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.44),
+    0 0 38px rgba(56, 189, 248, 0.23);
+}
+
+.blog-card:hover::after {
+  opacity: 1;
+}
+
+.blog-card h3 {
+  position: relative;
+  z-index: 2;
+  color: #7dd3fc;
+  margin: 0 0 12px;
+  font-size: 22px;
+}
+
+.blog-card p {
+  position: relative;
+  z-index: 2;
+  color: #dbeafe;
+  line-height: 1.78;
+}
+
+.blog-card .hidden-info {
+  position: relative;
+  z-index: 2;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(10px);
+  transition: all 0.32s ease;
+  color: #bae6fd;
+}
+
+.blog-card:hover .hidden-info {
+  max-height: 120px;
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 12px;
+}
+
+.info-panel {
+  position: fixed;
+  right: 34px;
+  bottom: 34px;
+  width: min(420px, calc(100vw - 68px));
+  padding: 24px;
+  border-radius: 26px;
+  background: rgba(2, 6, 23, 0.86);
+  border: 1px solid rgba(125, 211, 252, 0.38);
+  box-shadow: 0 0 48px rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(18px);
+  color: #e0f2fe;
+  transform: translateY(24px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.28s ease;
+  z-index: 40;
+}
+
+.info-panel.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.info-panel h3 {
+  color: #7dd3fc;
+  margin-top: 0;
+}
+
+.info-panel p {
+  line-height: 1.75;
+}
+
+.close-panel {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  cursor: pointer;
+  color: #bae6fd;
+  font-weight: 900;
+}
+
+.energy-ripple {
+  position: fixed;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(125, 211, 252, 0.9);
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.8);
+  pointer-events: none;
+  z-index: 9999;
+  animation: energy 0.8s ease-out forwards;
+}
+
+@keyframes energy {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(9);
+  }
+}
+
+@media (max-width: 900px) {
+  .blog-world-inner {
+    padding: 54px 18px 80px;
+  }
+
+  .blog-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .orbit-area {
+    height: 430px;
+  }
+
+  .blog-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-hero-panel h1 {
+    font-size: 42px;
+  }
+
+  .orbit-core {
+    width: 190px;
+    height: 190px;
+  }
+
+  .ring-a {
+    width: 300px;
+    height: 300px;
+  }
+
+  .ring-b {
+    width: 380px;
+    height: 380px;
+  }
+}
+</style>
+
+<div class="blog-world">
+  <canvas id="blogParticleCanvas"></canvas>
+  <div class="blog-noise"></div>
+  <div class="blog-glow"></div>
+
+  <div class="blog-world-inner">
+
+    <section class="blog-hero">
+
+      <div class="blog-hero-panel">
+        <div class="blog-kicker">Interactive Blog Space</div>
+
+        <h1>Wei's Blog Universe</h1>
+        <h2>Research Notes · Technical Logs · Personal Updates</h2>
+
+        <p>
+          This is my interactive blog space. I use this page to collect research notes,
+          technical logs, learning records, and selected updates on AI accelerators,
+          reinforcement learning, FPGA/NPU systems, and digital circuit design.
+        </p>
+
+        <div class="blog-actions">
+          <a href="{{ site.baseurl }}/">Profile</a>
+          <a class="secondary" href="{{ site.baseurl }}/publications/">Publications</a>
+          <a class="secondary" href="https://github.com/wxq96">GitHub</a>
+        </div>
+      </div>
+
+      <div class="orbit-area">
+        <div class="orbit-ring ring-a"></div>
+        <div class="orbit-ring ring-b"></div>
+        <div class="orbit-core"></div>
+
+        <div class="blog-node node-note"
+             data-title="Research Notes"
+             data-text="Short notes about AI accelerators, scheduling problems, FPGA/NPU design, and reinforcement-learning-based optimization.">
+          Notes
+        </div>
+
+        <div class="blog-node node-research"
+             data-title="Research Logs"
+             data-text="Logs for ongoing experiments, paper ideas, debugging records, and research direction refinement.">
+          Research
+        </div>
+
+        <div class="blog-node node-code"
+             data-title="Code Logs"
+             data-text="Implementation notes for Python, RTL, SystemVerilog, simulation scripts, and hardware modeling.">
+          Code
+        </div>
+
+        <div class="blog-node node-life"
+             data-title="Personal Updates"
+             data-text="Academic life, website updates, personal reflections, and small records during my PhD journey.">
+          Updates
+        </div>
+      </div>
+
+    </section>
+
+    <h2 class="blog-section-title">Blog Entries</h2>
+
+    <div class="blog-card-grid">
+
+      <div class="blog-card">
+        <h3>Research Notes</h3>
+        <p>
+          Notes on AI hardware, NPU architecture, scheduling, and hardware-aware optimization.
+        </p>
+        <div class="hidden-info">
+          This section will be used for technical summaries and research thinking records.
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <h3>Experiment Logs</h3>
+        <p>
+          Logs for experiments, simulation results, debugging process, and implementation details.
+        </p>
+        <div class="hidden-info">
+          I plan to use this space to record trial-and-error during research development.
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <h3>Learning Records</h3>
+        <p>
+          Learning notes on computer architecture, RTL design, FPGA, reinforcement learning, and EDA.
+        </p>
+        <div class="hidden-info">
+          These notes help organize my long-term research and engineering knowledge.
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <h3>Personal Updates</h3>
+        <p>
+          Website updates, academic progress, and selected personal reflections.
+        </p>
+        <div class="hidden-info">
+          This part keeps the website alive, instead of leaving it as a static CV page.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="info-panel" id="infoPanel">
+    <div class="close-panel" id="closePanel">×</div>
+    <h3 id="panelTitle">Blog Space</h3>
+    <p id="panelText">Click a node to explore more.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById("blogParticleCanvas");
+  const ctx = canvas.getContext("2d");
+  const root = document.documentElement;
+  const panel = document.getElementById("infoPanel");
+  const panelTitle = document.getElementById("panelTitle");
+  const panelText = document.getElementById("panelText");
+  const closePanel = document.getElementById("closePanel");
+
+  let width, height;
+  let particles = [];
+  const mouse = { x: 0, y: 0, active: false };
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    initParticles();
+  }
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.65;
+      this.vy = (Math.random() - 0.5) * 0.65;
+      this.size = Math.random() * 2.2 + 0.7;
+      this.baseSize = this.size;
+      this.color = Math.random() > 0.5
+        ? "rgba(125, 211, 252, 0.88)"
+        : "rgba(59, 130, 246, 0.76)";
+    }
+
+    update() {
+      if (mouse.active) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+        if (dist < 210) {
+          const force = (210 - dist) / 210;
+          this.vx += (dx / dist) * force * 0.045;
+          this.vy += (dy / dist) * force * 0.045;
+          this.size = this.baseSize + force * 2.2;
+        } else {
+          this.size += (this.baseSize - this.size) * 0.06;
+        }
+      }
+
+      this.x += this.vx;
+      this.y += this.vy;
+
+      this.vx *= 0.985;
+      this.vy *= 0.985;
+
+      if (this.x < -20 || this.x > width + 20 || this.y < -20 || this.y > height + 20) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 18;
+      ctx.shadowColor = "#7dd3fc";
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    const count = Math.min(170, Math.floor(window.innerWidth / 8));
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 115) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(125, 211, 252, ${0.14 * (1 - dist / 115)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    const gx = mouse.active ? mouse.x : width / 2;
+    const gy = mouse.active ? mouse.y : height / 2;
+
+    const gradient = ctx.createRadialGradient(gx, gy, 0, gx, gy, 460);
+    gradient.addColorStop(0, "rgba(56, 189, 248, 0.12)");
+    gradient.addColorStop(1, "rgba(2, 6, 23, 0)");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    drawConnections();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener("resize", resize);
+
+  window.addEventListener("mousemove", function (e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+
+    root.style.setProperty("--mx", (e.clientX / window.innerWidth * 100) + "%");
+    root.style.setProperty("--my", (e.clientY / window.innerHeight * 100) + "%");
+  });
+
+  window.addEventListener("mouseleave", function () {
+    mouse.active = false;
+  });
+
+  window.addEventListener("click", function (e) {
+    const ripple = document.createElement("div");
+    ripple.className = "energy-ripple";
+    ripple.style.left = e.clientX + "px";
+    ripple.style.top = e.clientY + "px";
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 820);
+
+    particles.forEach(p => {
+      const dx = p.x - e.clientX;
+      const dy = p.y - e.clientY;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+      if (dist < 240) {
+        const force = (240 - dist) / 240;
+        p.vx += (dx / dist) * force * 8;
+        p.vy += (dy / dist) * force * 8;
+      }
+    });
+  });
+
+  document.querySelectorAll(".blog-node").forEach(function (node) {
+    node.addEventListener("click", function (e) {
+      e.stopPropagation();
+      panelTitle.textContent = node.dataset.title;
+      panelText.textContent = node.dataset.text;
+      panel.classList.add("show");
+    });
+  });
+
+  closePanel.addEventListener("click", function (e) {
+    e.stopPropagation();
+    panel.classList.remove("show");
+  });
+
+  resize();
+  animate();
+})();
+</script>
